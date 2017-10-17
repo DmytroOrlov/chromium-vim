@@ -636,6 +636,12 @@ Mappings.actions = {
       }.bind(this));
       return;
     }
+    if (command.indexOf('@"') !== -1) {
+      RUNTIME('getPaste', function(paste) {
+        this.shortCuts(command.split('@"').join(paste), repeats);
+      }.bind(this));
+      return;
+    }
     return window.setTimeout(function() {
       var shouldComplete = !/<cr>(\s+)?$/i.test(command);
       command = command
